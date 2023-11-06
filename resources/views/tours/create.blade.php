@@ -71,7 +71,9 @@
                 </div>
             </div>
 
-            <x-primary-button class="mt-4">{{ __('Submit') }}</x-primary-button>
+            <div class="flex justify-end">
+                <x-primary-button class="mt-4">{{ __('Submit') }}</x-primary-button>
+            <div>
         </form>
     </div>
 </x-app-layout>

@@ -118,28 +118,6 @@
                         {{ __('Register') }}
                     </x-primary-button>
                 </div>
-
-                <!-- TODO : Remove this -->
-                {{--
-                <div class="flex items-center justify-between mt-4">
-                    <x-secondary-button onclick="event.preventDefault();setUp();">
-                        {{ __('Test') }}
-                    </x-secondary-button>
-                </div>
-
-                <script>
-                    function setUp() {
-                        document.querySelector('#name').value = 'Guilherme';
-                        document.querySelector('#email').value = 'a@a.a';
-                        document.querySelector('#password').value = '12345678';
-                        document.querySelector('#password_confirmation').value = '12345678';
-                        document.querySelector('#telephone').value = '55 51 999447504';
-                        document.querySelector('#street_address').value = '11116 95A St NW';
-                        document.querySelector('#country').value = 'Canada';
-                        document.querySelector('#city').value = 'Edmonton';
-                        document.querySelector('#postal_code').value = 'XXX XXX';
-                    }
-                </script> --}}
             </form>
         </div>
     </div>

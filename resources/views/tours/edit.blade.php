@@ -67,14 +67,19 @@
                 <div class="mt-4 flex-auto">
                     <x-input-label for="status" :value="__('Status')" />
                     <x-select id="status" class="block mt-1 w-full" name="status" required :options="App\Enum\TourStatusEnum::getSelectOptions()"
-                        :selected="old('status', $tour->status)" />
+                        :selected="old('status', $tour->status->value)" />
                     <x-input-error :messages="$errors->get('status')" class="mt-2" />
                 </div>
             </div>
 
-            <div class="mt-4 space-x-2">
-                <x-primary-button class="mt-4">{{ __('Submit') }}</x-primary-button>
-                <a href="{{ route('tours.index') }}">{{ __('Cancel') }}</a>
+            <div class="mt-4 flex justify-between">
+                <x-danger-button x-on:click.prevent="window.location.href='{{ route('tours.index') }}'">
+                    {{ __('Cancel') }}
+                </x-danger-button>
+                
+                <x-primary-button>
+                    {{ __('Submit') }}
+                </x-primary-button>
             </div>
         </form>
     </div>

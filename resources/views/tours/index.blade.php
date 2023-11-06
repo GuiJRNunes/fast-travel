@@ -6,11 +6,13 @@
                 sm:grid-cols-[repeat(1,minmax(200px,_1fr))]">
         @foreach ($tours as $tour)
             <div class="bg-white overflow-hidden shadow-sm rounded-lg">
-                <div class="h-32 w-full bg-center bg-no-repeat bg-cover"
-                    style="background-image: url({{ $tour->image_link }});">
-                </div>
+                <a href="{{ route('tours.show', $tour) }}">
+                    <div class="h-32 w-full bg-center bg-no-repeat bg-cover hover:cursor-pointer hover:blur-sm transition ease-in-out duration-300"
+                        style="background-image: url({{ $tour->image_link }});">
+                    </div>
+                </a>
                 <div class="flex-1 flex-col p-6 text-gray-900">
-                    <div class="flex justify-between items-center">
+                    <div class="flex justify-between items-start">
                         <span class="text-xl">{{ $tour->title }}</span>
                         @if (Auth::user()->isAdmin())
                             <x-dropdown>
@@ -36,7 +38,7 @@
                             {{ date('j M Y', strtotime($tour->return_date)) }}</li>
                         @if (Auth::user()->isAdmin())
                             <li>
-                                <x-chip>{{ $tour->status }}</x-chip>
+                                <x-chip>{{ $tour->status->title() }}</x-chip>
                             </li>
                         @endif
                         <li>{{ $tour->capacity }} Available spots</li>

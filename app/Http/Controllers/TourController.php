@@ -16,6 +16,15 @@ class TourController extends Controller
         ]);
     }
 
+    public function show(Tour $tour): View
+    {
+        $this->authorize('view', $tour);
+
+        return View('tours.show', [
+            'tour' => $tour,
+        ]);
+    }
+
     public function create(): View
     {
         $this->authorize('create', Tour::class);

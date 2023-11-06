@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TourController;
 use Illuminate\Support\Facades\Route;
@@ -26,7 +27,11 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('tours', TourController::class)
-    ->only(['index', 'create', 'store', 'edit', 'update'])
+    ->only(['index', 'show', 'create', 'store', 'edit', 'update'])
     ->middleware(['auth', 'verified']);
 
-require __DIR__.'/auth.php';
+Route::post('bookings/tour/{tour}/user/{user}', [BookingController::class, 'store'])
+    ->middleware(['auth', 'verified'])
+    ->name('bookings.store');
+
+require __DIR__ . '/auth.php';

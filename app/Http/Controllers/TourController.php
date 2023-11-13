@@ -2,17 +2,33 @@
 
 namespace App\Http\Controllers;
 
+use App\Enum\TourStatusEnum;
 use App\Http\Requests\TourStoreRequest;
 use App\Models\Tour;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
 class TourController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
+        /* TODO : Implement pagination */
+        /* $validated = $request->validate([
+            'initial_departure_date' => 'sometimes|required_with:final_departure_date|date',
+            'final_departure_date' => 'sometimes|required_with:initial_departure_date|date',
+            'initial_return_date' => 'sometimes|required_with:final_return_date|date',
+            'final_return_date' => 'sometimes|required_with:initial_return_date|date',
+            'price_per_passenger' => 'sometimes|decimal:0,2|gt:0',
+        ]);
+
         return View('tours.index', [
-            'tours' => Tour::paginate(30),
+            'tours' => Tour::filterBy($validated)->paginate(15),
+        ]); */
+
+        return View('tours.index', [
+            'tours' => Tour::where('status', TourStatusEnum::OPEN)->orderByDesc('departure_date')->paginate(15),
         ]);
     }
 
@@ -56,6 +72,7 @@ class TourController extends Controller
     {
         $this->authorize('update', $tour);
 
+        /* TODO : Determine and apply proper protections to updates to a tour that has bookings */
         $validated = $request->validated();
 
         $tour->update($validated);

@@ -73,10 +73,12 @@
             </div>
 
             <div class="mt-4 flex justify-between">
-                <x-danger-button x-on:click.prevent="window.location.href='{{ route('tours.index') }}'">
-                    {{ __('Cancel') }}
-                </x-danger-button>
-                
+                <a href="{{ route('tours.index') }}">
+                    <x-danger-button type="button">
+                        {{ __('Cancel') }}
+                    </x-danger-button>
+                </a>
+
                 <x-primary-button>
                     {{ __('Submit') }}
                 </x-primary-button>

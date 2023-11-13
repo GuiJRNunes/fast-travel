@@ -40,7 +40,9 @@ class TourPolicy
      */
     public function update(User $user, Tour $tour): bool
     {
-        return $user->isAdmin();
+        if (!$user->isAdmin()) return false;
+
+        return $tour->status !== TourStatusEnum::CLOSED;
     }
 
     /**

@@ -30,8 +30,12 @@ Route::resource('tours', TourController::class)
     ->only(['index', 'show', 'create', 'store', 'edit', 'update'])
     ->middleware(['auth', 'verified']);
 
-Route::post('bookings/tour/{tour}/user/{user}', [BookingController::class, 'store'])
-    ->middleware(['auth', 'verified'])
-    ->name('bookings.store');
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::post('bookings/tour/{tour}/user/{user}', [BookingController::class, 'store'])->name('bookings.store');
+    Route::get('bookings', [BookingController::class, 'index'])->name('bookings.index');
+    Route::patch('bookings/confirm', [BookingController::class, 'patchConfirm'])->name('bookings.confirm');
+    Route::delete('bookings/{booking}', [BookingController::class, 'destroy'])->name('bookings.destroy');
+    Route::get('bookings/history', [BookingController::class, 'history'])->name('bookings.history');
+});
 
 require __DIR__ . '/auth.php';

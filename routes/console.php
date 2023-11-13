@@ -17,10 +17,12 @@ use Illuminate\Support\Facades\Artisan;
 */
 
 Artisan::command('create-admin {email=admin@test.com} {password=12345678}', function(string $email, string $password) {
-    User::create([
+    $user = new User([
         'name' => 'Admin',
         'email' => $email,
         'password' => Hash::make($password),
-        'user_type' => UserTypeEnum::ADMIN,
     ]);
+
+    $user->user_type = UserTypeEnum::ADMIN;
+    $user->save();
 })->purpose('Creates an admin user record on the database');

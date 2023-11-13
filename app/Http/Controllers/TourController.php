@@ -26,9 +26,15 @@ class TourController extends Controller
         return View('tours.index', [
             'tours' => Tour::filterBy($validated)->paginate(15),
         ]); */
+        $tours = null;
+        if ($request->user()->isAdmin()) {
+            $tours = Tour::orderByDesc('departure_date')->paginate(15);
+        } else {
+            $tours = Tour::where('status', TourStatusEnum::OPEN)->orderByDesc('departure_date')->paginate(15);
+        }
 
         return View('tours.index', [
-            'tours' => Tour::where('status', TourStatusEnum::OPEN)->orderByDesc('departure_date')->paginate(15),
+            'tours' => $tours,
         ]);
     }
 

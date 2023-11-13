@@ -14,7 +14,6 @@ class Unsplash
     'zunQwMy5B6M',
     'Fn27DlI8bZ8',
     'km74CLco7qs',
-    /* 'vk4vjTNVrTg', */
     'K2s_YE031CA',
   ];
 

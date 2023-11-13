@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+use App\Enum\UserTypeEnum;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 
@@ -14,6 +16,11 @@ use Illuminate\Support\Facades\Artisan;
 |
 */
 
-Artisan::command('inspire', function () {
-    $this->comment(Inspiring::quote());
-})->purpose('Display an inspiring quote');
+Artisan::command('create-admin {email=admin@test.com} {password=12345678}', function(string $email, string $password) {
+    User::create([
+        'name' => 'Admin',
+        'email' => $email,
+        'password' => Hash::make($password),
+        'user_type' => UserTypeEnum::ADMIN,
+    ]);
+})->purpose('Creates an admin user record on the database');

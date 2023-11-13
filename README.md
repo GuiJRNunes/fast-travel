@@ -39,6 +39,10 @@ This repository contains a simple website for a fictional travel agency company 
 
             php artisan migrate --seed
 
+    - To create an admin user without seeding the database use the following command
+
+            php artisan create-admin admin@test.com 12345678
+
 - Configure resources
 
         npm run build

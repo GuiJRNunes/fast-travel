@@ -25,13 +25,13 @@
 
                                 <ul class="flex gap-1 items-end">
                                     <li class="text-lg font-bold flex-[0_0_110px]">Base price</li>
-                                    <li>CA${{ $booking->tour->price_per_passenger }}</li>
+                                    <li>CA${{ number_format($booking->tour->price_per_passenger, 2) }}</li>
                                 </ul>
 
                                 <ul class="flex gap-1 items-end">
                                     <li class="text-lg font-bold flex-[0_0_110px]">Total price</li>
                                     <li>
-                                        CA${{ $booking->number_of_passengers * $booking->tour->price_per_passenger }}
+                                        CA${{ number_format($booking->number_of_passengers * $booking->tour->price_per_passenger, 2) }}
                                     </li>
                                 </ul>
                             </div>

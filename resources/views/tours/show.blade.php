@@ -57,7 +57,7 @@
 
                 {{-- Pricing --}}
                 <p class="mt-4 text-xl font-semibold text-right">
-                    CA$ {{ $tour->price_per_passenger }}
+                    CA$ {{ number_format($tour->price_per_passenger, 2) }}
                 </p>
 
                 {{-- Booking form --}}

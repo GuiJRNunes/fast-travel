@@ -120,7 +120,7 @@
                     {{-- Footer --}}
                     <div class="flex justify-between mt-4">
                         <span class="text-xl font-semibold text-right">
-                            CA$ {{ $tour->price_per_passenger }}
+                            CA$ {{ number_format($tour->price_per_passenger, 2) }}
                         </span>
                         <div class="flex justify-end">
                             <a href="{{ route('tours.show', $tour) }}">

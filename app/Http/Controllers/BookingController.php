@@ -18,6 +18,8 @@ class BookingController extends Controller
 
     public function index(Request $request): View
     {
+        $this->authorize('viewAny', Booking::class);
+
         return View('bookings.index', [
             'bookings' => $request->user()->bookings()->with('tour')->where('status', BookingStatusEnum::PENDING)->get(),
         ]);
@@ -141,6 +143,8 @@ class BookingController extends Controller
 
     public function history(Request $request): View
     {
+        $this->authorize('viewAny', Booking::class);
+        
         /* TODO : Order by decreasing tour departure date */
         return View('bookings.history', [
             'bookings' => $request->user()->bookings()->with('tour')->where('status', BookingStatusEnum::CONFIRMED)->orderByDesc('created_at')->paginate(15),

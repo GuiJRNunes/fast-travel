@@ -16,7 +16,7 @@ class BookingPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return ! $user->isAdmin();
     }
 
     /**
@@ -42,6 +42,8 @@ class BookingPolicy
      */
     public function update(User $user, Booking $booking): bool
     {
+        if ($user->isAdmin()) return false;
+
         return $user->id === $booking->user_id and $booking->status === BookingStatusEnum::PENDING;
     }
 
@@ -50,7 +52,6 @@ class BookingPolicy
      */
     public function delete(User $user, Booking $booking): bool
     {
-
         return $user->id === $booking->user_id and $booking->status === BookingStatusEnum::PENDING;
     }
 

@@ -9,7 +9,7 @@ This repository contains a simple website for a fictional travel agency company 
 - [Composer](https://getcomposer.org/)
 - [Node.js 20.0.0](https://nodejs.org/dist/v20.0.0/)
 
-## Installing the project
+## Installing the project locally
 
 - Clone the repository
     

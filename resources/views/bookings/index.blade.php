@@ -18,7 +18,7 @@
                     <div class="flex flex-col gap-4">
                         @foreach ($bookings as $booking)
                             <div class="border rounded-md border-gray-300 p-2 relative" data-booking>
-                                <div>
+                                <div class="pr-12">
                                     <h3 class="font-bold text-lg" data-booking-title>{{ $booking->tour->title }}</h3>
                                     <p data-booking-dates>{{ date('j M Y', strtotime($booking->tour->departure_date)) }}
                                         -

@@ -2,29 +2,30 @@
 function onClickOpenModalDelete(event) {
     document.querySelector('#delete-booking-confirmation form').action = event.target.dataset.deleteLink;
 
-    booking = event.target.closest('[data-booking]');
-    booking_title = booking.querySelector('[data-booking-title]').innerHTML;
-    booking_dates = booking.querySelector('[data-booking-dates]').innerHTML;
+    let booking = event.target.closest('[data-booking]');
+    let booking_title = booking.querySelector('[data-booking-title]').innerHTML;
+    let booking_dates = booking.querySelector('[data-booking-dates]').innerHTML;
     document.querySelector('#delete-booking-confirmation [data-modal-content]').innerHTML = `<b>${booking_title}<b><br/>${booking_dates}`;
 }
 
 function onChangeUpdateTotalPrice(event) {
-    number_of_passengers = event.target.value;
-    price_per_passenger = event.target.dataset.bookingPricePerPassengerValue;
-    total_price_elem = event.target.closest('[data-booking]').querySelector('[data-booking-total-price]');
+    let number_of_passengers = event.target.value;
+    let price_per_passenger = event.target.dataset.bookingPricePerPassengerValue;
+    let total_price_elem = event.target.closest('[data-booking]').querySelector('[data-booking-total-price]');
 
+    let formatter = new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "CAD",
+    });
+
+    let total_price;
     if (number_of_passengers >= 1 && number_of_passengers <= 999) {
-        total_price = price_per_passenger * event.target.value;
-
-        formatter = new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: "CAD",
-        });
-
-        total_price_elem.innerHTML = formatter.format(total_price);
+        total_price = price_per_passenger * event.target.value; 
     } else {
-        total_price_elem.innerHTML = "";
+        total_price = 0;
     }
+
+    total_price_elem.innerHTML = formatter.format(total_price);
 }
 
 document.querySelectorAll('[data-delete-link]').forEach(function (element) {
